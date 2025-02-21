@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="tip.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;400;700&display=swap"
+        rel="stylesheet">
+
+    <title>XynCalc</title>
+</head>
+<body>
+
+
+    <div>
+
+
+        <div class="maincalc">
+
+            <div class="subcal" id="subcal">
+
+
+                <h1 class="mainh">XynCalc</h1>
+
+               
+
+
+
+
+            </div>
+
+
+            <div class="tips">
+
+
+                <label for="number" class="labeltip">Enter Bill Amount:</label>
+                <br>
+
+
+                <input type="number" id="a" placeholder=" Bill Amount" class="tip">
+                <br> 
+                <label for="number" class="labeltip"> Enter Rate of Tip:</label>
+                <br>
+                <input type="number" id="r" placeholder=" Enter Rate of Tip" class="tip">
+                <br> 
+                <label for="number" class="labeltip"> Enter Number Of People:</label>
+                <br>
+                <input type="number" id="m" placeholder=" Enter Number Of People" class="tip">
+
+                <br> <br>
+
+
+              
+            
+                <button class="tipbtn" id="tipbtn">calculate</button>
+                  
+
+                
+
+
+
+
+
+
+
+
+            </div>
+
+
+
+
+
+        </div>
+
+
+
+
+
+
+    </div>
+
+    <script>
+    document.getElementById("tipbtn").addEventListener("click", function () {
+        const billAmount = parseFloat(document.getElementById("a").value);
+        const tipPercentage = parseFloat(document.getElementById("r").value);
+        const numPeople = parseInt(document.getElementById("m").value) || 1;
+        const resultDiv = document.getElementById("subcal");
+    
+        if (isNaN(billAmount) || isNaN(tipPercentage) || billAmount <= 0 || tipPercentage < 0) {
+            resultDiv.innerHTML = "<p style='color: black; font-size: 20px; font-weight: bold; text-align: center;'>Please enter valid values</p>";
+            return;
+        }
+    
+        // Calculations
+        const tipAmount = (tipPercentage / 100) * billAmount;
+        const totalBill = billAmount + tipAmount;
+        const amountPerPerson = totalBill / numPeople;
+    
+        // Displaying results in flex row style
+        resultDiv.innerHTML = `
+            <div style="display: flex; justify-content: center; gap: 5px;  margin-top: -5px;">
+                <p style="color: black; font-size: 15px; font-weight: bolder; text-align: center;">Tip Amount: <strong>$${tipAmount.toFixed(2)}</strong></p>
+                <p style="color: black; font-size: 15px; font-weight: bolder; text-align: center;">Total Bill: <strong>$${totalBill.toFixed(2)}</strong></p>
+                <p style="color: black; font-size: 15px; font-weight: bolder; text-align: center;">Per Person: <strong>$${amountPerPerson.toFixed(2)}</strong></p>
+            </div>
+        `;
+    });
+</script>
+
+
+
+
+    
+</body>
+</html>

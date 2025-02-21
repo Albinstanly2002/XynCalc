@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="loan.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;400;700&display=swap"
+        rel="stylesheet">
+
+    <title>XynCalc</title>
+</head>
+<body>
+
+
+    <div>
+
+
+        <div class="maincalc">
+
+            <div class="subcal" id="subcal">
+
+
+                <h1 class="mainh">XynCalc</h1>
+
+               
+
+
+
+
+            </div>
+
+
+            <div class="loans">
+
+
+                <label for="number" class="labeloan">Enter Principal Amount:</label>
+                <br>
+
+
+                <input type="number" id="p" placeholder=" Enter Principal Amount" class="loan">
+                <br> 
+                <label for="number" class="labeloan"> Enter Rate of Interest:
+                </label>
+                <br>
+                <input type="number" id="r" placeholder=" Enter Rate of Interest" class="loan">
+                <br> 
+                <label for="number" class="labeloan"> Enter Loan Tenure In Months:</label>
+                <br>
+                <input type="number" id="m" placeholder=" Enter Loan Tenure In Months" class="loan">
+
+                <br> <br>
+
+
+              
+            
+                <button class="loanbtn" id="loanbtn">calculate</button>
+                  
+
+                
+
+
+
+
+
+
+
+
+            </div>
+
+
+
+
+
+        </div>
+
+
+
+
+
+
+    </div>
+    <script>
+        document.getElementById("loanbtn").addEventListener("click", function () {
+            const loanAmount = parseFloat(document.getElementById("p").value);
+            const annualRate = parseFloat(document.getElementById("r").value);
+            const loanTenure = parseFloat(document.getElementById("m").value);
+
+            const resultDiv = document.getElementById("subcal");
+
+            if (isNaN(loanAmount) || isNaN(annualRate) || isNaN(loanTenure) || loanAmount <= 0 || annualRate <= 0 || loanTenure <= 0) {
+                resultDiv.innerHTML = "<p style='color: black; font-size: 20px; font-weight: bold; text-align: center;'>Please enter valid values</p>";
+                return;
+            }
+
+            const monthlyRate = (annualRate / 12) / 100;
+            const numberOfMonths = loanTenure * 12;
+
+            const emi = (loanAmount * monthlyRate * Math.pow(1 + monthlyRate, numberOfMonths)) / (Math.pow(1 + monthlyRate, numberOfMonths) - 1);
+            const totalPayment = emi * numberOfMonths;
+            const totalInterest = totalPayment - loanAmount;
+
+            resultDiv.innerHTML = `
+            <div style="display: flex; justify-content: center; gap: 5px;  margin-top: -5px;">
+                <p style="color: black; font-size: 15px; font-weight: bolder; text-align: center;">EMI: <strong>${emi.toFixed(2)}</strong></p>
+                <p style="color: black; font-size: 15px; font-weight: bolder; text-align: center;">Total Payment: <strong>${totalPayment.toFixed(2)}</strong></p>
+                <p style="color: black; font-size: 15px; font-weight: bolder; text-align: center; ">Total Interest Paid: <strong>${totalInterest.toFixed(2)}</strong></p>
+            </div>
+        `;
+        });
+    </script>
+
+
+
+
+    
+</body>
+</html>

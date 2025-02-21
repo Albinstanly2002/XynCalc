@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="temp.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;400;700&display=swap"
+        rel="stylesheet">
+
+    <title>XynCalc</title>
+</head>
+<body>
+
+
+    <div>
+
+
+        <div class="maincalc">
+
+            <div class="subcal" id="subcal">
+
+
+                <h1 class="mainh">XynCalc</h1>
+
+               
+
+
+
+
+            </div>
+
+
+            <div class="temp">
+
+
+                <input type="text" id="temp1" placeholder="Enter your temperature" class="temp1">
+
+                <div class="tempcon">
+
+                <form id="converter">
+                   
+                    <label for="unitfrom">Select Unit:</label>
+                    <select id="unitFrom" name="unit">
+                        <option value="Celsius">Celsius (°C)</option>
+                        <option value="Fahrenheit">Fahrenheit (°F)</option>
+                        <option value="Kelvin">Kelvin (K)</option>
+                    </select>
+                    
+                    
+                </form>
+
+                <br>  <br>
+
+
+
+
+                <form id="converter1">
+                    <label for="unitTo">Select unit to convert:</label>
+                   
+                    
+                   
+                    <select id="unitTo" name="unit">
+                        <option value="Celsius">Celsius (°C)</option>
+                        <option value="Fahrenheit">Fahrenheit (°F)</option>
+                        <option value="Kelvin">Kelvin (K)</option>
+                    </select>
+                    
+                    
+                </form>
+
+            </div>
+                <button class="tempbutton1" id="tempbutton1">calculate</button>
+                  
+
+                
+
+
+
+
+
+
+
+
+            </div>
+
+
+
+
+
+        </div>
+
+
+
+
+
+
+    </div>
+    <script>
+       document.getElementById("tempbutton1").addEventListener("click", function () {
+    const temp = parseFloat(document.getElementById("temp1").value);
+    const unitFrom = document.getElementById("unitFrom").value;
+    const unitTo = document.getElementById("unitTo").value;
+    const resultDiv = document.getElementById("subcal");
+
+    if (isNaN(temp)) {
+        resultDiv.innerHTML = "<p style='color: black; font-size: 20px; font-weight: bold; text-align: center;'>Please enter a valid temperature</p>";
+        return;
+    }
+
+    let convertedTemp;
+
+    if (unitFrom === unitTo) {
+        convertedTemp = temp;
+    } else if (unitFrom === "Celsius") {
+        if (unitTo === "Fahrenheit") {
+            convertedTemp = (temp * 9/5) + 32;
+        } else if (unitTo === "Kelvin") {
+            convertedTemp = temp + 273.15;
+        }
+    } else if (unitFrom === "Fahrenheit") {
+        if (unitTo === "Celsius") {
+            convertedTemp = (temp - 32) * 5/9;
+        } else if (unitTo === "Kelvin") {
+            convertedTemp = (temp - 32) * 5/9 + 273.15;
+        }
+    } else if (unitFrom === "Kelvin") {
+        if (unitTo === "Celsius") {
+            convertedTemp = temp - 273.15;
+        } else if (unitTo === "Fahrenheit") {
+            convertedTemp = (temp - 273.15) * 9/5 + 32;
+        }
+    }
+
+    resultDiv.innerHTML = `<p style='color: white; font-size: 20px; font-weight: bold; text-align: center;'>Converted Temperature: <strong>${convertedTemp.toFixed(2)} ${unitTo}</strong></p>`;
+});
+
+    </script>
+
+   
+
+
+
+
+
+    
+</body>
+</html>

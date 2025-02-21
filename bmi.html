@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="stylesbmi.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;400;700&display=swap"
+        rel="stylesheet">
+
+    <title>XynCalc</title>
+</head>
+<body>
+
+
+    <div>
+
+
+        <div class="maincalc">
+
+            <div class="subcal" id="subcal">
+
+
+                <h1 class="mainh">XynCalc</h1>
+
+               
+
+
+
+
+            </div>
+
+
+            <div class="bmi">
+
+
+                <input type="text" id="bmiweight" placeholder="Enter your weight in kg" class="bmiinput">
+                <input type="text" id="bmiheight" placeholder="Enter your Height in cm" class="bmiinput">
+                <button class="bmibutton1" id="bmibutton1">calculate</button>
+                  
+
+                
+
+
+
+
+
+
+
+
+            </div>
+
+
+
+        </div>
+
+
+
+
+
+
+    </div>
+    <script>
+
+document.addEventListener("DOMContentLoaded", function () {
+    const calculateBtn = document.getElementById("bmibutton1");
+    const heightInput = document.getElementById("bmiheight");
+    const weightInput = document.getElementById("bmiweight");
+    const resultDiv = document.getElementById("subcal"); // Ensure this is the correct ID for XynnCalc div
+
+    calculateBtn.addEventListener("click", function () {
+        const height = parseFloat(heightInput.value) / 100; // Convert cm to meters
+        const weight = parseFloat(weightInput.value);
+
+        if (isNaN(height) || isNaN(weight) || height <= 0 || weight <= 0) {
+            resultDiv.innerHTML = "<p style='color: white; font-size: 20px; font-weight: bold; text-align: center;'>Please enter valid height and weight!</p>";
+            return;
+        }
+
+        const bmi = (weight / (height * height)).toFixed(2);
+        let category = "";
+
+        if (bmi < 18.5) {
+            category = "Underweight";
+        } else if (bmi >= 18.5 && bmi < 24.9) {
+            category = "Normal weight";
+        } else if (bmi >= 25 && bmi < 29.9) {
+            category = "Overweight";
+        } else {
+            category = "Obese";
+        }
+
+        resultDiv.innerHTML = `<p style='color: white; font-size: 20px; font-weight: bold; text-align: center;'>Your BMI is <strong>${bmi}</strong> (${category})</p>`;
+    });
+});
+
+    </script>
+
+
+   
+
+
+
+
+
+    
+</body>
+</html>

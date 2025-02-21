@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="age.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;400;700&display=swap"
+        rel="stylesheet">
+
+    <title>XynCalc</title>
+</head>
+<body>
+
+
+    <div>
+
+
+        <div class="maincalc">
+
+            <div class="subcal" id="subcal">
+
+
+                <h1 class="mainh">XynCalc</h1>
+
+               
+
+
+
+
+            </div>
+
+
+            <div class="Age">
+
+
+                <label for="date" class="labelage">Enter Your DOB:</label>
+
+
+                <input type="date" id="DOB" placeholder=" Enter Your Date of  Birth" class="age1">
+
+              
+            
+                <button class="agebtn" id="agebtn">calculate</button>
+                  
+
+                
+
+
+
+
+
+
+
+
+            </div>
+
+
+
+
+
+        </div>
+
+
+
+
+
+
+    </div>
+    <script>
+        document.getElementById("agebtn").addEventListener("click", function () {
+            const dob = document.getElementById("DOB").value;
+            const resultDiv = document.getElementById("subcal");
+
+            if (!dob) {
+                resultDiv.innerHTML = "<p style='color: black; font-size: 20px; font-weight: bold; text-align: center;'>Please enter a valid Date Of Birth</p>";
+                return;
+            }
+
+            const birthDate = new Date(dob);
+            const today = new Date();
+            let age = today.getFullYear() - birthDate.getFullYear();
+            const monthDiff = today.getMonth() - birthDate.getMonth();
+            const dayDiff = today.getDate() - birthDate.getDate();
+
+            if (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)) {
+                age--;
+            }
+
+            resultDiv.innerHTML = `<p  style='color: white; font-size: 20px; font-weight: bold; text-align: center;'>You are <strong>${age}</strong> years old.</p>`;
+        });
+    </script>
+   
+
+
+
+
+
+    
+</body>
+</html>

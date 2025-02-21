@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="currstyles.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;400;700&display=swap"
+        rel="stylesheet">
+
+    <title>XynCalc</title>
+</head>
+<body>
+
+
+    <div>
+
+
+        <div class="maincalc">
+
+            <div class="subcal" id="subcal">
+
+
+                <h1 class="mainh">XynCalc</h1>
+
+               
+
+
+
+
+            </div>
+
+
+            <div class="bmi">
+
+
+                <input type="text" id="amount" placeholder="Enter the amount" class="currinput">
+
+                <div class="select1">
+                
+                <form >
+                    <label for="fromCurrency">Choose currency you have:</label>
+<select id="fromCurrency" name="fromCurrency">
+    <option value="USD">United States Dollar (USD)</option>
+    <option value="EUR">Euro (EUR)</option>
+    <option value="GBP">British Pound (GBP)</option>
+    <option value="JPY">Japanese Yen (JPY)</option>
+    <option value="AUD">Australian Dollar (AUD)</option>
+</select>
+
+
+                </form>
+                
+                <br> <br>
+
+                <form>
+                    <label for="toCurrency">Choose currency to convert:</label>
+<select id="toCurrency" name="toCurrency">
+    <option value="USD">United States Dollar (USD)</option>
+    <option value="EUR">Euro (EUR)</option>
+    <option value="GBP">British Pound (GBP)</option>
+    <option value="JPY">Japanese Yen (JPY)</option>
+    <option value="AUD">Australian Dollar (AUD)</option>
+</select>
+                </form>
+            </div>
+                
+                <button class="currbutton1" id="currbutton1">calculate</button>
+                  
+
+                
+
+
+
+
+
+
+
+
+            </div>
+
+
+
+        </div>
+
+
+
+
+
+
+    </div>
+    <script>
+document.addEventListener("DOMContentLoaded", function () {
+    document.getElementById("currbutton1").addEventListener("click", function () {
+        const amount = parseFloat(document.getElementById("amount").value);
+        const fromCurrency = document.getElementById("fromCurrency").value;
+        const toCurrency = document.getElementById("toCurrency").value;
+        const resultDiv = document.getElementById("subcal");
+
+     
+
+        if (isNaN(amount) || amount <= 0) {
+            resultDiv.innerHTML = "<p style='color: black; font-size: 20px; font-weight: bold; text-align: center;'>Please enter a valid amount</p>";
+            return;
+        }
+
+        // Exchange rates (example values, should be fetched from an API)
+        const exchangeRates = {
+            "USD": { "EUR": 0.92, "GBP": 0.78, "JPY": 136, "AUD": 1.47, "USD": 1 },
+            "EUR": { "USD": 1.09, "GBP": 0.85, "JPY": 148, "AUD": 1.6, "EUR": 1 },
+            "GBP": { "USD": 1.28, "EUR": 1.17, "JPY": 175, "AUD": 1.86, "GBP": 1 },
+            "JPY": { "USD": 0.0073, "EUR": 0.0067, "GBP": 0.0057, "AUD": 0.012, "JPY": 1 },
+            "AUD": { "USD": 0.68, "EUR": 0.62, "GBP": 0.54, "JPY": 83, "AUD": 1 }
+        };
+
+        // Conversion calculation
+        const convertedAmount = (amount * exchangeRates[fromCurrency][toCurrency]).toFixed(2);
+        resultDiv.innerHTML = `<p style='color: white; font-size: 20px; font-weight: bold; text-align: center;'  >Converted Amount: <strong>${convertedAmount} ${toCurrency}</strong></p>`;
+    });
+});
+
+
+    </script>
+
+
+   
+
+
+
+
+
+    
+</body>
+</html>
